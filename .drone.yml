@@ -1,7 +1,7 @@
 pipeline:
 
   create-docker-image:
-    image: docker:17.09.0-ce
+    image: docker:1.11
     environment:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
@@ -10,7 +10,7 @@ pipeline:
       event: [push, pull_request]
 
   push-image-to-quay:
-    image: docker:17.09.0-ce
+    image: docker:1.11
     environment:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
@@ -20,3 +20,11 @@ pipeline:
     when:
       branch: [master]
       event: [push]
+
+services:
+  dind:
+    image: docker:1.11-dind
+    privileged: true
+    command:
+      - "-s"
+      - "overlay"
