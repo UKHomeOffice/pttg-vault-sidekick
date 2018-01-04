@@ -1,18 +1,18 @@
 pipeline:
 
   create-docker-image:
-    image: docker:1.11
+    image: docker:17.09.0-ce
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_HOST=tcp://127.17.0.1:2375
     commands:
       - docker build -t pttg-vault-sidekick .
     when:
       event: [push, pull_request]
 
   push-image-to-quay:
-    image: docker:1.11
+    image: docker:17.09.0-ce
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_HOST=tcp://127.17.0.1:2375
     commands:
       - docker login -u="ukhomeofficedigital+pttg" -p=${DOCKER_PASSWORD} quay.io
       - docker tag pttg-vault-sidekick quay.io/ukhomeofficedigital/pttg-vault-sidekick:build-${DRONE_BUILD_NUMBER}
@@ -20,11 +20,3 @@ pipeline:
     when:
       branch: [master]
       event: [push]
-
-services:
-  dind:
-    image: docker:1.11-dind
-    privileged: true
-    command:
-      - "-s"
-      - "overlay"
