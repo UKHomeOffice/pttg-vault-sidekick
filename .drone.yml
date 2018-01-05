@@ -15,7 +15,9 @@ pipeline:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
       - docker login -u="ukhomeofficedigital+pttg" -p=${DOCKER_PASSWORD} quay.io
+      - docker tag pttg-vault-sidekick quay.io/ukhomeofficedigital/pttg-vault-sidekick:latest
       - docker tag pttg-vault-sidekick quay.io/ukhomeofficedigital/pttg-vault-sidekick:build-${DRONE_BUILD_NUMBER}
+      - docker push quay.io/ukhomeofficedigital/pttg-vault-sidekick:latest
       - docker push quay.io/ukhomeofficedigital/pttg-vault-sidekick:build-${DRONE_BUILD_NUMBER}
     when:
       branch: [master]
