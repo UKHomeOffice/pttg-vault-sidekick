@@ -8,4 +8,4 @@ COPY scripts/trigger_nginx_reload.sh /usr/local/scripts/trigger_nginx_reload.sh
 RUN chmod +x /usr/local/scripts/trigger_nginx_reload.sh
 
 RUN apk update && \
-    apk add ca-certificates wget
+    apk add ca-certificates wget apache2-utils
