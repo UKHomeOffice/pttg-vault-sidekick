@@ -1,4 +1,4 @@
-FROM quay.io/ukhomeofficedigital/vault-sidekick:v0.3.3
+FROM quay.io/ukhomeofficedigital/vault-sidekick:v0.3.8
 
 LABEL maintainer="Tim.Hammonds@digital.homeoffice.gov.uk"
 
