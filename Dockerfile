@@ -17,6 +17,6 @@ RUN apk update && \
 RUN addgroup ${GROUP} && \
     adduser -D ${USER} -g ${GROUP} -u ${USER_ID}
 
-RUN chown /mnt/htpasswd/.htpasswd_1 groupt-pttg-vault-sidekick
+RUN chown /mnt/htpasswd/.htpasswd_1 1002
 
 USER ${USER_ID}
