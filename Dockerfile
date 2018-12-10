@@ -16,4 +16,9 @@ RUN apk update && \
 
 RUN addgroup ${GROUP} && \
     adduser -D ${USER} -g ${GROUP} -u ${USER_ID}
+
+RUN if [ -f /mnt/htpasswd/.htpasswd_1 ]; then \
+        chown 1002 /mnt/htpasswd/.htpasswd_1; \
+    fi
+
 USER ${USER_ID}
